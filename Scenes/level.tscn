@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://b6wcr80u25x46"]
+
+[ext_resource type="PackedScene" uid="uid://de2mxeigde362" path="res://Scenes/Prefabs/character.tscn" id="1_i3ex1"]
+
+[sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_edtfp"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_da0e7"]
+
+[node name="Level" type="Node3D"]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D"]
+shape = SubResource("WorldBoundaryShape3D_edtfp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D/CollisionShape3D"]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
+mesh = SubResource("PlaneMesh_da0e7")
+skeleton = NodePath("../../..")
+
+[node name="CharacterBody3D" parent="." instance=ExtResource("1_i3ex1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.592972, 1.92349, -0.223047)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.376127, 0.926568, 0, -0.926568, 0.376127, 0, 7.49006, 0)
+light_energy = 7.85
+light_indirect_energy = 3.286
+shadow_enabled = true
