@@ -7,6 +7,21 @@ extends CharacterBody3D
 @export var TILT_UPPER_LIMIT := deg_to_rad(90.0)
 @export var CAMERA_CONTROLLER : Camera3D
 
+@onready var flashlight = $CollisionShape3D/Camera3D/SpotLight3D
+@onready var coll = $CollisionShape3D
+@onready var ray = $CollisionShape3D/Camera3D/RayCast3D
+
+var lock_dict = {
+	0:false,
+	1:false,
+	2:false
+}
+var key_dict = {
+	0:false,
+	1:false,
+	2:false
+}
+
 var _mouse_input : bool = false
 var _rotation_input : float
 var _tilt_input : float
@@ -32,6 +47,39 @@ func _input(event):
 		exitBool=!exitBool
 		if exitBool: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 		else: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	
+	if event.is_action_pressed("FlashLight"):
+		if flashlight.spot_range>=20: 
+			flashlight.spot_range=0
+		else: 
+			flashlight.spot_range=24
+			
+	if event.is_action_pressed("Crouch"):
+		if coll.scale.y<=0.5:
+			coll.scale.y=1
+		else:
+			coll.scale.y=0.5
+			
+	if event.is_action_pressed("Interact") and ray.is_colliding():
+		var obj = ray.get_collider().get_parent()
+		var objParsed = obj as Key
+		
+		if objParsed == null : 
+			objParsed = obj as Lock
+			if objParsed!=null: #lock
+				if key_dict[objParsed.Type]:
+					lock_dict[objParsed.Type] = true
+					objParsed.queue_free()
+					#print(str(objParsed.Type)+" "+str(lock_dict[objParsed.Type]))
+					
+				if lock_dict.values().all(func(x): return x==true):
+					print("todo abierto nomasss")
+				
+		else: #key
+			key_dict[objParsed.Type] = true
+			objParsed.queue_free()
+			#print(str(objParsed.Type)+" "+str(key_dict[objParsed.Type]))
+
 
 func _update_camera(delta):
 	

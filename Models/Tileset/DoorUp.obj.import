@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://4t2hxpumuu71"
+path="res://.godot/imported/DoorUp.obj-892c309e5b9f8a6be3bf100f44c1196d.mesh"
+
+[deps]
+
+files=["res://.godot/imported/DoorUp.obj-892c309e5b9f8a6be3bf100f44c1196d.mesh"]
+
+source_file="res://Models/Tileset/DoorUp.obj"
+dest_files=["res://.godot/imported/DoorUp.obj-892c309e5b9f8a6be3bf100f44c1196d.mesh", "res://.godot/imported/DoorUp.obj-892c309e5b9f8a6be3bf100f44c1196d.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://Scripts/character.gd" id="1_od0x7"]
 [ext_resource type="Shader" path="res://Scripts/Shader/camera.gdshader" id="2_tfcvu"]
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7d6gv"]
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ug2og"]
 render_priority = 0
 shader = ExtResource("2_tfcvu")
@@ -10,18 +12,27 @@ shader = ExtResource("2_tfcvu")
 [sub_resource type="QuadMesh" id="QuadMesh_71hvv"]
 material = SubResource("ShaderMaterial_ug2og")
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7d6gv"]
-
 [node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
 script = ExtResource("1_od0x7")
-CAMERA_CONTROLLER = NodePath("Camera3D")
-
-[node name="Camera3D" type="Camera3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7368, 0.492479)
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.222494)
-mesh = SubResource("QuadMesh_71hvv")
+CAMERA_CONTROLLER = NodePath("CollisionShape3D/Camera3D")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_7d6gv")
+
+[node name="Camera3D" type="Camera3D" parent="CollisionShape3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7368, 0.492479)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.222494)
+mesh = SubResource("QuadMesh_71hvv")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="CollisionShape3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.348073)
+light_energy = 2.789
+spot_range = 24.0
+spot_angle = 21.31
+
+[node name="RayCast3D" type="RayCast3D" parent="CollisionShape3D/Camera3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.109699)
+target_position = Vector3(0, 0, -5)
+collision_mask = 2
