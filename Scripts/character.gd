@@ -14,21 +14,24 @@ var _mouse_rotation : Vector3
 var _player_rotation : Vector3
 var _camera_rotation : Vector3
 
+var exitBool: bool = true
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 
 func _unhandled_input(event: InputEvent) -> void:
 	
-	_mouse_input = event is InputEventMouseMotion and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
+	_mouse_input = event is InputEventMouseMotion #and Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED
 	if _mouse_input:
 		_rotation_input = -event.relative.x * MOUSE_SENSITIVITY
 		_tilt_input = -event.relative.y * MOUSE_SENSITIVITY
 
 		
 func _input(event):
-	
 	if event.is_action_pressed("exit"):
-		get_tree().quit()
+		exitBool=!exitBool
+		if exitBool: Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else: Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _update_camera(delta):
 	
@@ -59,12 +62,9 @@ func _physics_process(delta):
 	_update_camera(delta)
 	
 	if not is_on_floor():
-		velocity.y -= gravity * delta
-
-	# Handle jump.
-	if Input.is_action_just_pressed("Jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-
+		velocity.y -= gravity*2 * delta
+		
+	
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
 	var input_dir = Input.get_vector("Left", "Right","Forward","Backwards")
