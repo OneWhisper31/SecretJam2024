@@ -74,6 +74,7 @@ func _input(event):
 					
 				if lock_dict.values().all(func(x): return x==true):
 					print("todo abierto nomasss")
+					%Gamemanager._retry()
 				
 		else: #key
 			key_dict[objParsed.Type] = true

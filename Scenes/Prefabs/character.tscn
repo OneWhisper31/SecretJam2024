@@ -13,6 +13,8 @@ shader = ExtResource("2_tfcvu")
 material = SubResource("ShaderMaterial_ug2og")
 
 [node name="CharacterBody3D" type="CharacterBody3D" node_paths=PackedStringArray("CAMERA_CONTROLLER")]
+collision_layer = 5
+collision_mask = 5
 script = ExtResource("1_od0x7")
 CAMERA_CONTROLLER = NodePath("CollisionShape3D/Camera3D")
 
@@ -28,7 +30,8 @@ mesh = SubResource("QuadMesh_71hvv")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="CollisionShape3D/Camera3D"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.348073)
-light_energy = 2.789
+light_energy = 5.421
+light_volumetric_fog_energy = 0.0
 spot_range = 24.0
 spot_angle = 21.31
 

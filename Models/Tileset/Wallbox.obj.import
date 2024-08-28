@@ -1,0 +1,22 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://cngy3m4ne6ji1"
+path="res://.godot/imported/Wallbox.obj-c8924c8eccbbc34b31f18eae6ffcc7e6.mesh"
+
+[deps]
+
+files=["res://.godot/imported/Wallbox.obj-c8924c8eccbbc34b31f18eae6ffcc7e6.mesh"]
+
+source_file="res://Models/Tileset/Wallbox.obj"
+dest_files=["res://.godot/imported/Wallbox.obj-c8924c8eccbbc34b31f18eae6ffcc7e6.mesh", "res://.godot/imported/Wallbox.obj-c8924c8eccbbc34b31f18eae6ffcc7e6.mesh"]
+
+[params]
+
+generate_tangents=true
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+optimize_mesh=true
+force_disable_mesh_compression=false

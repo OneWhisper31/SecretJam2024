@@ -1,0 +1,29 @@
+[gd_scene load_steps=2 format=3 uid="uid://nk1o1ebigxin"]
+
+[ext_resource type="Script" path="res://Scripts/enemy.gd" id="1_1iohb"]
+
+[node name="Enemy" type="SpotLight3D"]
+transform = Transform3D(1, 0, 0, 0, 1.19249e-08, 1, 0, -1, 1.19249e-08, 0, 0, 0)
+light_color = Color(0.996657, 0, 0.0383144, 1)
+light_energy = 8.0
+light_indirect_energy = 0.0
+light_volumetric_fog_energy = 0.0
+light_specular = 0.0
+spot_range = 6.52113
+spot_attenuation = 0.164939
+spot_angle = 11.84
+script = ExtResource("1_1iohb")
+
+[node name="RayCast3D2" type="RayCast3D" parent="."]
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+
+[node name="RayCast3D3" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.8, 0)
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
+
+[node name="RayCast3D4" type="RayCast3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+target_position = Vector3(0, 0, -5)
+collision_mask = 4
